@@ -1,0 +1,77 @@
+
+
+body.active-modal {
+    overflow-y: hidden;
+}
+
+.modal-on {
+
+    color:springgreen  ;
+   opacity: 80%;
+    border: solid 8px black; 
+    font-weight: 300;
+    background-color: black;
+    border-radius: 25px;
+    padding: 8px ;
+    display: block;
+    margin: 15px auto;
+    font-size: 15px;
+}
+.modal-on:hover{
+    transition:opacity, font-weight 0.2s;
+    font-weight:900;
+    opacity: 100%;
+ padding: 12px;
+     border: solid 4px chartreuse; 
+  
+}
+.modal-off {
+    opacity:30%;
+    color: white;
+    font-weight: 600;
+    background-color: black;
+    border-radius: 25px;
+    padding: 5px 10px;
+    display: block;
+    margin: 10px auto 10px;
+    font-size: 15px;
+}
+
+.modal-off:hover{
+transition: opacity .4s;
+    opacity: 15%;
+  
+}
+
+.modal, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+.modal-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}

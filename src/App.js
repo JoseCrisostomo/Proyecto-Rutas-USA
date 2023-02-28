@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { ButtonLog } from "./utils/Buttons";
+import { Profile } from "./utils/Profile";
+import { Header } from "./componentes/Header";
+import {  BuscadorConFiltros } from './OtroBuscadorFilter';
+import { Route, Routes } from "react-router-dom";
+import { Home } from './Home';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>HOLA</h1>
+
+      <ButtonLog />
+<Home/>
+      <Profile />
+      <div className="center w85">
+        <Header />
+        <div className="ph3 pv1 background-gray">
+          <Routes>
+            <Route path="/busqueda_abanzada" element={<BuscadorConFiltros/>} />
+          </Routes>
+        </div>
+      </div>
     </div>
   );
 }
