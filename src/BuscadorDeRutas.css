@@ -167,3 +167,11 @@ padding-left: 1em;
   }
  
 }
+
+.form-search-advanced{
+display:grid;
+width: 20em;
+height: 20em; ;
+
+
+}

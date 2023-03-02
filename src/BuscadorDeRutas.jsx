@@ -8,18 +8,19 @@ import { BUSCAR_RUTAS_CON_FILTROS } from './Queries'
 import './BuscadorDeRutas.css'
 
 
+
 export const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [visibility, setVisibility] = useState(false);
   const [buscar_rutas, { data, loading, error }] = useLazyQuery(RUTAS);
    console.log(data)  
 
+   
   const handleSubmit = event => {
     event.preventDefault();
     buscar_rutas({ variables: { match: `${searchTerm}` } });
     event.target.reset()
   };
-
 
   return (
 
@@ -49,12 +50,11 @@ export const SearchForm = () => {
 
           {error && <p>Error :(</p>}
 
-       
-{!data ? 
-  <p >No existe resultados</p>
-  :
+          
 
-      data && data.buscar_rutas.map(result => (
+{data ? 
+  
+  data && data.buscar_rutas.map(result => (
             <div className="card-container" key={result.Id_Ruta}>
               <p>{result.Id_Ruta}</p>
               <h2>{result.Nombre_Ruta}</h2>
@@ -78,9 +78,13 @@ export const SearchForm = () => {
                 <img src={result.Imagen_Ruta_5} alt={"hola"} />
               </div>
             </div>
-           
-          ))
-        
+            
+          ) 
+          )
+        :
+       
+<h2>NO HAY RESULTADOS</h2>
+      
           }
       
       </div>

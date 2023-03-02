@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SearchForm } from '../BuscadorDeRutas';
+import { SearchAdvancedForm } from '../BusquedaAvanzada'
 import { ModalBotonCrearRutas,
    ModalBotonCrearOrganizador, 
    ModalBotonCrearParticipante,
@@ -30,6 +31,7 @@ export const Header = () => {
       
           <div>
         <SearchForm/>
+        <SearchAdvancedForm/>
        </div> 
 
       </div>

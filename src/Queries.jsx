@@ -48,7 +48,7 @@ export const BUSCAR_RUTAS_CON_FILTROS = gql `
 query BUSCAR_FILTRANDO_RUTAS(
   $Edad_Maxima: Int = 99,
   $Edad_Minima: Int = 18,
-  $Lugar: String,
+  $Match: String,
   $Fecha_Inicio: date = "now()" ,
   $Fecha_Fin: date = "2099-12-27",
   $Idioma_Ruta: IDIOMA_enum,
@@ -61,15 +61,15 @@ query BUSCAR_FILTRANDO_RUTAS(
   {Fecha_Inicio_Ruta:{_gte:$Fecha_Inicio}}
   {Fecha_Final_Ruta:{_lte:$Fecha_Fin}}
   	{_or: [ 
-  {Lugar_Salida:{_ilike:$Lugar}}
-	{Lugar_Paso_1:{_ilike:$Lugar}}
-  {Lugar_Paso_2:{_ilike:$Lugar}}
-  {Lugar_Paso_3:{_ilike:$Lugar}} 
-  {Lugar_Paso_4:{_ilike:$Lugar}}
-  {Lugar_Paso_5:{_ilike:$Lugar}}
-  {Lugar_Llegada:{_ilike:$Lugar}}
-  {Nombre_Ruta:{_ilike:$Lugar}}
-  {Descripcion_Ruta:{_ilike:$Lugar}}]}
+  {Lugar_Salida:{_ilike:$Match}}
+	{Lugar_Paso_1:{_ilike:$Match}}
+  {Lugar_Paso_2:{_ilike:$Match}}
+  {Lugar_Paso_3:{_ilike:$Match}} 
+  {Lugar_Paso_4:{_ilike:$Match}}
+  {Lugar_Paso_5:{_ilike:$Match}}
+  {Lugar_Llegada:{_ilike:$Match}}
+  {Nombre_Ruta:{_ilike:$Match}}
+  {Descripcion_Ruta:{_ilike:$Match}}]}
 		{_or:[
   {Idioma_Ruta:{_eq:$Idioma_Ruta}}
   {Otro_Idioma_Ruta:{_eq:$Idioma_Ruta}}
@@ -82,6 +82,7 @@ query BUSCAR_FILTRANDO_RUTAS(
 
   ]
   }) {
+    Id_Ruta
  Nombre_Ruta
   Descripcion_Ruta
   Edad_Maxima
