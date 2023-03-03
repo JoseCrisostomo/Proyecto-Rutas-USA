@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ButtonLog } from "../../utils/Buttons";
 import "./Modal.css";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import {SearchAdvancedForm} from '../../BusquedaAvanzada'
 
 export const ModalBotonCrearRutaLogeado = () => {
     const NameButton= 'CREAR RUTAS'
@@ -84,4 +84,42 @@ export const ModalBotonCrearRutaLogeado = () => {
     );
   }
 
+
+
+
+
+ export const ModalBusquedaAvanzada = () => {
+   
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  if(modal) {
+    document.body.classList.add('active-modal')
+  } else {
+    document.body.classList.remove('active-modal')
+  }
+
+  return (
+    <>
+      <button onClick={toggleModal} className="btn-modal">
+       BUSQUEDA AVANZADA
+      </button>
+
+      {modal && (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
+        <SearchAdvancedForm/>
+            <button className="close-modal" onClick={toggleModal}>
+              CLOSE
+            </button>
+          </div>
+        </div>
+      )}
+      </>
+  );
+}
 

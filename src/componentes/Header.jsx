@@ -1,44 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SearchForm } from '../BuscadorDeRutas';
-import { SearchAdvancedForm } from '../BusquedaAvanzada'
-import { ModalBotonCrearRutas,
-   ModalBotonCrearOrganizador, 
-   ModalBotonCrearParticipante,
-   ModalBotonParticiparRuta} from './Modal/OTRO_MODAL';
+
+import {
+  ModalBotonCrearRutas,
+  ModalBotonCrearOrganizador,
+  ModalBotonCrearParticipante,
+  ModalBotonParticiparRuta
+} from './Modal/OTRO_MODAL';
+import { ModalBusquedaAvanzada } from './Modal/Modal'
 
 
 export const Header = () => {
 
-  return ( 
-  
+  return (
+<>
     <div className="header-1">
-      <ModalBotonParticiparRuta/>
-      <ModalBotonCrearParticipante/>
-     <ModalBotonCrearOrganizador/>
-     < ModalBotonCrearRutas />
-      <div className="header-2">
+      <ModalBotonParticiparRuta />
+      <ModalBotonCrearParticipante />
+      <ModalBotonCrearOrganizador />
+      < ModalBotonCrearRutas />
+      </div>
 
+      <div className="header-2">
         <Link to="/" className="link">
           <button className="fw7 mr1">HOME</button>
-        </Link>        
-
-        <Link to="/busqueda_abanzada" className="link">
-          <button>BUSQUEDA ABANZADA</button>
         </Link>
-    
-       </div>
-      
-          <div>
-        <SearchForm/>
-        <SearchAdvancedForm/>
-       </div> 
-
       </div>
-     
-   
+
+      <div>
+        <ModalBusquedaAvanzada />
+      </div>
+
+      <div>
+        <SearchForm />
+      </div>
+</>
   );
- 
+
 };
 
 

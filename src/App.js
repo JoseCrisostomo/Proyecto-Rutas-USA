@@ -3,7 +3,7 @@ import "./App.css";
 import { ButtonLog } from "./utils/Buttons";
 import { Profile } from "./utils/Profile";
 import { Header } from "./componentes/Header";
-import {  BuscadorConFiltros } from './OtroBuscadorFilter';
+import {  ModalBusquedaAvanzada } from './componentes/Modal/Modal';
 import { Route, Routes } from "react-router-dom";
 import { Home } from './Home';
 
@@ -20,7 +20,7 @@ function App() {
         <Header />
         <div className="ph3 pv1 background-gray">
           <Routes>
-            <Route path="/busqueda_abanzada" element={<BuscadorConFiltros/>} />
+            <Route path="/busqueda_avanzada" element={<ModalBusquedaAvanzada />} />
           </Routes>
         </div>
       </div>
