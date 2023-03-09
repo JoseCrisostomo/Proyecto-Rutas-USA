@@ -6,13 +6,13 @@ import { Header } from "./componentes/Header";
 import {  ModalBusquedaAvanzada } from './componentes/Modal/Modal';
 import { Route, Routes } from "react-router-dom";
 import { Home } from './Home';
-
+//import { Resultados } from './MasResultados' 
 
 function App() {
   return (
     <div className="App">
       <h1>HOLA</h1>
-
+      {/*<Resultados/>*/}
       <ButtonLog />
 <Home/>
       <Profile />
@@ -20,7 +20,7 @@ function App() {
         <Header />
         <div className="ph3 pv1 background-gray">
           <Routes>
-            <Route path="/busqueda_avanzada" element={<ModalBusquedaAvanzada />} />
+            <Route path="/busqueda_avanzada" element={ModalBusquedaAvanzada} />
           </Routes>
         </div>
       </div>

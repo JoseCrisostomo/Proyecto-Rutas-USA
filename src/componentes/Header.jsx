@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SearchForm } from '../BuscadorDeRutas';
+import {ModalBusquedaAvanzada} from './Modal/Modal'
 
 import {
   ModalBotonCrearRutas,
@@ -8,8 +9,9 @@ import {
   ModalBotonCrearParticipante,
   ModalBotonParticiparRuta
 } from './Modal/OTRO_MODAL';
-import { ModalBusquedaAvanzada } from './Modal/Modal'
 
+//import { Resultados } from '../MasResultados' 
+import {SearchAdvancedForm} from '../BusquedaAvanzada'
 
 export const Header = () => {
 
@@ -27,9 +29,13 @@ export const Header = () => {
           <button className="fw7 mr1">HOME</button>
         </Link>
       </div>
-
+ 
       <div>
         <ModalBusquedaAvanzada />
+      </div>
+  
+     <div>
+        <SearchAdvancedForm />
       </div>
 
       <div>

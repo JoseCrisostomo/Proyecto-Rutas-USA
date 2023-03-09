@@ -6,21 +6,21 @@ import { BUSCAR_RUTAS_CON_FILTROS  } from './Queries'
 import "./BuscadorDeRutas.css"
 
 export const SearchAdvancedForm = () => {
-  const [Match, setMatch] = useState('');
-  const [Fecha_Inicio, setFecha_Inicio] = useState('');
-  const [Fecha_Fin, setFecha_Fin] = useState('');
+  const [search, setSearch] = useState('');
+  const [Fecha_Inicio_Ruta, setFecha_Inicio] = useState('');
+  const [Fecha_Final_Ruta, setFecha_Final_Ruta] = useState('');
   const [Idioma_Ruta, setIdioma_Ruta] = useState('');
   const [Tipo_Vehiculo, setTipo_Vehiculo] = useState('');
 
-  const [RUTA, { loading, error, data }] = useLazyQuery(BUSCAR_RUTAS_CON_FILTROS);
+  const [buscar_rutas, { loading, error, data }] = useLazyQuery(BUSCAR_RUTAS_CON_FILTROS);
   console.log(data)  
   
   const handleSearch = () => {
-    RUTA({
+    buscar_rutas({
       variables: {
-        Match,
-        Fecha_Inicio,
-        Fecha_Fin,
+        search,
+        Fecha_Inicio_Ruta,
+        Fecha_Final_Ruta,
         Idioma_Ruta,
         Tipo_Vehiculo
       }
@@ -31,13 +31,13 @@ export const SearchAdvancedForm = () => {
     <div>
      <div className="form-search-advanced">
          <label>BUSCAR:</label>
-      <input placeholder='Buscar por Ciudades, Lugares, Parques, etc' type="text" value={Match} onChange={(e) => setMatch(e.target.value)} />
+      <input placeholder='Buscar Ciudades, Lugares, Parques, etc' type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
 
       <label>FECHA INICIO RUTA:</label>
-      <input type="date" value={Fecha_Inicio} onChange={(e) => setFecha_Inicio(e.target.value)} />
+      <input type="date" value={Fecha_Inicio_Ruta} onChange={(e) => setFecha_Inicio(e.target.value)} />
 
       <label>FECHA FIN RUTA:</label>
-      <input type="date" value={Fecha_Fin} onChange={(e) => setFecha_Fin(e.target.value)} />
+      <input type="date" value={Fecha_Final_Ruta} onChange={(e) => setFecha_Final_Ruta(e.target.value)} />
 
       <label>IDIOMA:</label>
       <select  value={Idioma_Ruta} onChange={(e) => setIdioma_Ruta(e.target.value)} >
@@ -51,7 +51,7 @@ export const SearchAdvancedForm = () => {
       <label>TIPO VEHICULO:</label>
 
       <select value={Tipo_Vehiculo} onChange={(e) => setTipo_Vehiculo(e.target.value)}>
-        <option value="">Todos lo Vehiculos</option>
+
         <option value="Automovil">Automovil</option>
         <option value="Motocicleta">Motocicleta</option>
         <option value="Bicicleta">Bicicleta</option>
@@ -66,8 +66,9 @@ export const SearchAdvancedForm = () => {
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {data && (
-        <ul>
-          {data.RUTA.map((result) => (
+        <div>
+        <ul className='contenedor_cards'>
+          {data.buscar_rutas.map((result) => (
             
             <div className="card-container" key={result.Id_Ruta}>
             <h4>{result.Id_Ruta}</h4>
@@ -87,25 +88,10 @@ export const SearchAdvancedForm = () => {
 </div>
           ))}
         </ul>
+        </div>
       )}
     </div>
   );
 };
 
 
-
-/*
-Se utiliza el hook useLazyQuery de Apollo Client para realizar
-una consulta GraphQL que recupere los resultados de búsqueda en función de los 
-criterios especificados por el usuario en el formulario. 
-Los campos del formulario, como la consulta de búsqueda, la fecha de inicio y 
-fin, la ubicación y la categoría, se almacenan en el estado local del componente
- usando el hook useState.
-
-La consulta GraphQL SEARCH_QUERY se define en otro archivo y se importa en este 
-componente. La consulta utiliza los argumentos especificados en el formulario 
-para filtrar los resultados de búsqueda. 
-En este ejemplo, los resultados de búsqueda se muestran en una lista simple, 
-pero en una aplicación real, podrías personalizar la presentación de los 
-resultados según tus necesidades.
-*/

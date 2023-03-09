@@ -45,31 +45,19 @@ query {
 }
  `
 export const BUSCAR_RUTAS_CON_FILTROS = gql `
-query BUSCAR_FILTRANDO_RUTAS(
-  $Edad_Maxima: Int = 99,
-  $Edad_Minima: Int = 18,
-  $Match: String,
-  $Fecha_Inicio: date = "now()" ,
-  $Fecha_Fin: date = "2099-12-27",
+query BUSCADOR_AVANZADO (
+  $search: String = "",
+  $Tipo_Vehiculo: TIPO_VEHICULO_enum,
   $Idioma_Ruta: IDIOMA_enum,
-  $Tipo_Vehiculo: TIPO_VEHICULO_enum 
-) {
-  RUTA(where: {
+  $Fecha_Inicio_Ruta: date, 
+  $Fecha_Final_Ruta: date) {
+  buscar_rutas(args: {search: $search}, 
+    where: {
  		_and:[   
-  {Edad_Maxima:{_lte:$Edad_Maxima}}
-  {Edad_Minima:{_gte:$Edad_Minima}}
-  {Fecha_Inicio_Ruta:{_gte:$Fecha_Inicio}}
-  {Fecha_Final_Ruta:{_lte:$Fecha_Fin}}
-  	{_or: [ 
-  {Lugar_Salida:{_ilike:$Match}}
-	{Lugar_Paso_1:{_ilike:$Match}}
-  {Lugar_Paso_2:{_ilike:$Match}}
-  {Lugar_Paso_3:{_ilike:$Match}} 
-  {Lugar_Paso_4:{_ilike:$Match}}
-  {Lugar_Paso_5:{_ilike:$Match}}
-  {Lugar_Llegada:{_ilike:$Match}}
-  {Nombre_Ruta:{_ilike:$Match}}
-  {Descripcion_Ruta:{_ilike:$Match}}]}
+
+  {Fecha_Inicio_Ruta:{_gte:$Fecha_Inicio_Ruta}}
+  {Fecha_Final_Ruta:{_lte:$Fecha_Final_Ruta}}
+
 		{_or:[
   {Idioma_Ruta:{_eq:$Idioma_Ruta}}
   {Otro_Idioma_Ruta:{_eq:$Idioma_Ruta}}
@@ -80,10 +68,10 @@ query BUSCAR_FILTRANDO_RUTAS(
   {Tipo_Vehiculo_3:{_eq:$Tipo_Vehiculo}}  
 ]} 
 
-  ]
-  }) {
-    Id_Ruta
- Nombre_Ruta
+  ]}){ 
+    
+  Id_Ruta
+  Nombre_Ruta
   Descripcion_Ruta
   Edad_Maxima
   Edad_Minima
@@ -105,6 +93,7 @@ query BUSCAR_FILTRANDO_RUTAS(
   Imagen_Ruta_4
   Imagen_Ruta_5
   Link_Video_Presentacion_Ruta
+    
+   }
   }
-}
 `
